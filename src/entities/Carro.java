@@ -3,6 +3,7 @@ package entities;
 public class Carro {
     private String placa;
     private Tag tagAssociada;
+    private Pessoa proprietario;
 
     public Tag getTagAssociada() {
         return tagAssociada;
