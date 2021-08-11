@@ -1,5 +1,7 @@
 package entities;
 
+import org.json.simple.JSONObject;
+
 public class Car {
     private String plate;
     private Tag associatedTag;
@@ -29,4 +31,23 @@ public class Car {
         this.associatedTag = associatedTag;
         this.owner = owner;
     }
+
+    public JSONObject ToJSONObject(){
+        JSONObject json = new JSONObject();
+        json.put("AssociatedTag", this.getAssociatedTag().getId());
+        json.put("Plate", this.getPlate());
+        json.put("Owner", this.getOwner().getId());
+        return json;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
