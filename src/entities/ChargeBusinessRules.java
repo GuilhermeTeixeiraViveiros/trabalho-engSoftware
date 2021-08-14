@@ -21,15 +21,15 @@ public class ChargeBusinessRules {
 
     public static int chargeByTAG(String TAG){
         ArrayList<Vehicle> vehiclesWithTags = getVehicleWithTags();
-        Vehicle vehicleToCharge = vehiclesWithTags.stream().filter((v) -> v.getAssociatedTag().getId() == TAG)
-                .findFirst().orElse(null);
 
-        if(vehicleToCharge == null){
-            return -1;
+        for (Vehicle v: vehiclesWithTags ) {
+            if(v.getAssociatedTag().equals(TAG)){
+                AddChargeToVehicle(v);
+                return 0;
+            }
         }
 
-        AddChargeToVehicle(vehicleToCharge);
-        return 0;
+        return -1;
     }
 
     public static void chargeByImage(String path){
