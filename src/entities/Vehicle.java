@@ -2,7 +2,7 @@ package entities;
 
 import org.json.simple.JSONObject;
 
-public class Car {
+public class Vehicle {
     private String plate;
     private Tag associatedTag;
     private Person owner;
@@ -26,7 +26,7 @@ public class Car {
         this.owner = owner;
     }
 
-    public Car(String plate, Tag associatedTag, Person owner) {
+    public Vehicle(String plate, Tag associatedTag, Person owner) {
         this.plate = plate;
         this.associatedTag = associatedTag;
         this.owner = owner;

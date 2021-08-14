@@ -1,6 +1,6 @@
 package main;
 import com.google.gson.Gson;
-import entities.Car;
+import entities.Vehicle;
 import entities.Person;
 import entities.Tag;
 import java.io.*;
@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class app {
     public static void main(String[] args) throws IOException {
-        ArrayList cars = new ArrayList<Car>();
-        Car newcar = new Car("HCC9999", new Tag("TAG123456"), new Person("Guilherme", "123456"));
+        ArrayList cars = new ArrayList<Vehicle>();
+        Vehicle newcar = new Vehicle("HCC9999", new Tag("TAG123456"), new Person("Guilherme", "123456"));
         cars.add(newcar);
         cars.add(newcar);
         cars.add(newcar);
@@ -30,7 +30,7 @@ public class app {
             content = content.concat(scanner.nextLine() + "\n");
         }
 
-        ArrayList<Car> carros = gson.fromJson(content, cars.getClass());
+        ArrayList<Vehicle> carros = gson.fromJson(content, cars.getClass());
 
     }
 }
