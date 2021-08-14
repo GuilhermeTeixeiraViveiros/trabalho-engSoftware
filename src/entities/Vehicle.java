@@ -13,7 +13,7 @@ public class Vehicle {
     }
 
     public String getPlate() {
-        return plate;
+        return this.plate;
     }
     public void setPlate(String plate) {
         this.plate = plate;

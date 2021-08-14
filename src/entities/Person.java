@@ -24,4 +24,7 @@ public class Person {
         this.name = name;
         this.id = id;
     }
+    public Person(String id) {
+        this.id = id;
+    }
 }

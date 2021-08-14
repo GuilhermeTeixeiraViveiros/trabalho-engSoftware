@@ -2,26 +2,58 @@ package entities;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChargeBusinessRules {
 
-    public static void chargeByPlate(String plate){
-        ArrayList<Vehicle> vehicles = getVehicle();
-        //procurar a placa nos vehicles
+    public static int chargeByPlate(String plate){
+        List<Vehicle> vehicles = getVehicle();
 
+        for (Vehicle v: vehicles ) {
+            if(v.getPlate().equals(plate) ){
+                AddChargeToVehicle(v);
+                return 0;
+            }
+        }
+
+        return -1;
     }
 
-    public static void chargeByTAG(String TAG){
-        return;
+    public static int chargeByTAG(String TAG){
+        ArrayList<Vehicle> vehiclesWithTags = getVehicleWithTags();
+        Vehicle vehicleToCharge = vehiclesWithTags.stream().filter((v) -> v.getAssociatedTag().getId() == TAG)
+                .findFirst().orElse(null);
+
+        if(vehicleToCharge == null){
+            return -1;
+        }
+
+        AddChargeToVehicle(vehicleToCharge);
+        return 0;
     }
 
     public static void chargeByImage(String path){
         return;
     }
 
-    private static ArrayList<Vehicle> getVehicle() {
+    private static ArrayList<Vehicle> getVehicleWithTags() {
+        ArrayList<Vehicle> vehiclesWithTags = new ArrayList<>();
+        getVehicle().forEach((v) -> {
+            if(v.getAssociatedTag() != null){
+                vehiclesWithTags.add(v);
+            }
+        });
+        return vehiclesWithTags;
+    }
+
+    private static List<Vehicle> getVehicle() {
         CarsDataAccess carsDataAccess = new CarsDataAccess();
         return carsDataAccess.getCars();
+    }
 
+    private static void AddChargeToVehicle(Vehicle vehicle){
+        ChargesDataAccess chargesDataAccess = new ChargesDataAccess();
+
+        chargesDataAccess.AddCharge();
     }
 }
