@@ -1,7 +1,7 @@
 package entities;
-
-import java.io.FileNotFoundException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ChargeBusinessRules {
@@ -23,12 +23,11 @@ public class ChargeBusinessRules {
         ArrayList<Vehicle> vehiclesWithTags = getVehicleWithTags();
 
         for (Vehicle v: vehiclesWithTags ) {
-            if(v.getAssociatedTag().equals(TAG)){
+            if(v.getAssociatedTag().getId().equals(TAG)){
                 AddChargeToVehicle(v);
                 return 0;
             }
         }
-
         return -1;
     }
 
@@ -52,8 +51,7 @@ public class ChargeBusinessRules {
     }
 
     private static void AddChargeToVehicle(Vehicle vehicle){
-        Account charge = new Account();
         ChargesDataAccess chargesDataAccess = new ChargesDataAccess();
-        chargesDataAccess.AddCharge(charge);
+        chargesDataAccess.AddCharge(new Charge(vehicle.getPlate(), Date.from(Instant.now()), Status.NOT_PAID, 10.0));
     }
 }
