@@ -52,8 +52,8 @@ public class ChargeBusinessRules {
     }
 
     private static void AddChargeToVehicle(Vehicle vehicle){
+        Account charge = new Account();
         ChargesDataAccess chargesDataAccess = new ChargesDataAccess();
-
-        chargesDataAccess.AddCharge();
+        chargesDataAccess.AddCharge(charge);
     }
 }
